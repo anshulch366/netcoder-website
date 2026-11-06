@@ -1,17 +1,13 @@
-/* ==========================================================
-   Netcoder Technology – Gateway page
-   Theme: white background, black text, orange buttons
-   ========================================================== */
-
 /* ---------- Variables ---------- */
 :root {
-  --color-bg: # #f7f7f7;
   --color-text: #000000;
   --color-text-muted: #555555;
   --color-border: #999999;
   --color-accent: #ff5533;
   --color-accent-dark: #e6401f;
   --color-surface: #f4f4f4;
+  --color-bg: #ffffff;
+  --color-orange-light: #FFE9DA;
 
   --font-heading: "Azeret Mono", monospace;
   --font-body: "Outfit", sans-serif;
@@ -32,7 +28,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg);
+  background-color: #ffffff;
   color: var(--color-text);
   line-height: 1.2;
 }
@@ -53,35 +49,74 @@ button {
 
 /* ---------- Layout ---------- */
 .page {
-  min-height: 100vh;
-  padding: 40px 20px;
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  padding: clamp(10px, 2vh, 24px) 20px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
 }
 
+/* Big light-orange circle rising from the bottom of the page */
+.page::before {
+  content: "";
+  position: absolute;
+
+  width: 108vw;
+  aspect-ratio: 1 / 1;
+
+  background-color:   #ff543247;
+  border-radius: 50%;
+
+  top: 26%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Container is blurred glass so the circle shows through softly */
 .container {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
   max-width: 1240px;
-  min-height: 941px;
-  padding: 80px 100px;
-  background-color: var(--color-bg);
+  height: 100%;
+  min-height: 0;
+
+  padding: clamp(16px, 3vh, 40px) clamp(24px, 6vw, 100px);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
   border: 1px solid var(--color-border);
-  border-radius: 80px;
+  border-radius: clamp(36px, 6vh, 80px);
 }
 
 /* ---------- Nav ---------- */
 .navbar {
+  position: relative;
+  z-index: 1;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* Empty space reserved for the logo */
 .logo {
   display: block;
-  width: 200px;
-  height: 70px;
+  width: clamp(110px, 18vh, 200px);
+  height: clamp(36px, 6.5vh, 70px);
 }
 
 .logo img {
@@ -124,7 +159,16 @@ button {
 
 /* ---------- Hero ---------- */
 .hero {
-  margin-top: 70px;
+  position: relative;
+  z-index: 1;
+
+  margin-top: 0;
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-section {
@@ -135,9 +179,9 @@ button {
 }
 
 .hero-badge {
-  padding: 8px 14px;
+  padding: 6px 14px;
   font-family: var(--font-heading);
-  font-size: 12px;
+  font-size: clamp(10px, 1.4vh, 12px);
   font-weight: 400;
   color: var(--color-text-muted);
   border: 1px solid var(--color-border);
@@ -146,9 +190,9 @@ button {
 
 .hero-title {
   max-width: 831px;
-  margin-top: 20px;
+  margin-top: clamp(8px, 1.5vh, 20px);
   font-family: var(--font-heading);
-  font-size: 64px;
+  font-size: clamp(26px, 5.5vh, 64px);
   font-weight: 700;
   line-height: 120%;
   letter-spacing: 0.02em;
@@ -157,9 +201,9 @@ button {
 
 .hero-para {
   max-width: 511px;
-  margin-top: 16px;
+  margin-top: clamp(6px, 1vh, 16px);
   font-family: var(--font-body);
-  font-size: 20px;
+  font-size: clamp(14px, 2vh, 20px);
   font-weight: 400;
   line-height: 120%;
   letter-spacing: 0.04em;
@@ -168,24 +212,28 @@ button {
 
 /* ---------- Cards ---------- */
 .cards {
+  position: relative;
+  z-index: 1;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-top: 40px;
+  margin-top: clamp(14px, 3vh, 40px);
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 40px;
+  padding: clamp(16px, 2.6vh, 40px) clamp(20px, 3vh, 40px);
+
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: 40px;
+  border-radius: clamp(24px, 3.5vh, 40px);
 }
 
 .card-title {
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: clamp(20px, 3.2vh, 32px);
   font-weight: 700;
   line-height: 120%;
   letter-spacing: 0.02em;
@@ -193,9 +241,9 @@ button {
 }
 
 .card-para {
-  margin-top: 10px;
+  margin-top: 6px;
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: clamp(11px, 1.5vh, 14px);
   font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.02em;
@@ -203,22 +251,22 @@ button {
 }
 
 .card-subtitle {
-  margin-top: 30px;
+  margin-top: clamp(10px, 2vh, 30px);
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: clamp(14px, 1.9vh, 18px);
   font-weight: 600;
 }
 
 .card-list {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin-top: 6px;
+  margin-bottom: clamp(10px, 2vh, 30px);
 }
 
 .card-list li {
   position: relative;
   padding-left: 14px;
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: clamp(11px, 1.5vh, 14px);
   font-weight: 300;
   line-height: 1.4;
   color: var(--color-text-muted);
@@ -237,15 +285,18 @@ button {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 40px;
+  height: clamp(32px, 4.4vh, 40px);
   margin-top: auto;
+
   font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+
   border: 1px solid var(--color-accent);
   border-radius: 8px;
+
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -279,28 +330,29 @@ button {
    Responsive
    ========================================================== */
 
-/* Small laptops */
-@media (max-width: 1100px) {
-  .container {
-    padding: 60px 50px;
-    border-radius: 60px;
-  }
-
-  .hero-title {
-    font-size: 52px;
-  }
-}
-
-/* Tablets – cards stack */
+/* Tablets and below */
 @media (max-width: 900px) {
+  .page {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .page::before {
+    width: 150vw;
+    top: auto;
+    bottom: -40vw;
+  }
+
   .container {
-    min-height: auto;
+    height: auto;
     padding: 40px 32px;
+    gap: 32px;
     border-radius: 48px;
   }
 
   .hero {
-    margin-top: 50px;
+    flex: none;
   }
 
   .hero-title {
@@ -326,18 +378,21 @@ button {
     padding: 16px 12px;
   }
 
+  .page::before {
+    width: 200vw;
+    top: auto;
+    bottom: -70vw;
+  }
+
   .container {
     padding: 24px 16px 32px;
+    gap: 24px;
     border-radius: 30px;
   }
 
   .logo {
     width: 110px;
     height: 36px;
-  }
-
-  .hero {
-    margin-top: 32px;
   }
 
   .hero-badge {
@@ -376,5 +431,13 @@ button {
   .card-subtitle {
     margin-top: 24px;
     font-size: 16px;
+  }
+
+  .card-list {
+    margin-bottom: 24px;
+  }
+
+  .btn {
+    height: 40px;
   }
 }
